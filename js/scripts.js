@@ -67,3 +67,36 @@
   
   })(jQuery); // End of use strict
   
+window.onload = () => {
+  (async function() {
+    await emailjs.init({
+      publicKey: "wlO-p9w-7V4_br61m",
+    });
+    console.log("Emailjs is ready")
+  })();
+}
+
+  async function sendEmail(){
+    document.getElementById("contact-form").addEventListener("submit", (e)=>{
+      e.preventDefault();
+    });
+
+    let params = {
+      fullname: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      message: document.getElementById("message").value
+    };
+    console.log(params);
+
+    let serviceId = "service_au0pz1q";
+    let templateId = "template_08zkwfe";
+
+    await emailjs.send(serviceId, templateId, params)
+    .then(response => {
+      alert("Message successfully sent!");
+    }).catch(e => {
+      alert("Failed to send!");
+      console.log("Error:"+ e);
+    })
+    window.location.href="/";
+  }
