@@ -81,6 +81,15 @@ window.onload = () => {
       e.preventDefault();
     });
 
+    let name = document.getElementById("name").value;
+    let mail = document.getElementById("email").value;
+    let msg = document.getElementById("message").value;
+
+    if(name == "" | mail == "" | msg == ""){
+      alert("Please enter details to send message");
+      return;
+    }
+
     let params = {
       fullname: document.getElementById("name").value,
       email: document.getElementById("email").value,
@@ -98,5 +107,5 @@ window.onload = () => {
       alert("Failed to send!");
       console.log("Error:"+ e);
     })
-   // window.location.href="/";
+   window.location.href="/";
   }
